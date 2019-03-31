@@ -37,8 +37,30 @@
            result.push(val);
        }
    }
-   console.log(result);*/
+   console.log(result);*//*
+    let p1 = new Promise(function (resolve,reject) {
+        setTimeout(() =>{
+            console.log('请求1成功');
+            resolve();
+        },1000);
+    }).then(function () {
+        return p2 = new Promise(function (resolve,reject) {
+            console.log('第二个请求开始');
+            reject();
 
+        }).then(function () {
+            setTimeout(() =>{
+                console.log('ok')
+            },3000)
+        }).catch(() =>{
+            setTimeout(() =>{
+                console.log('shibai')
+            },4000)
+
+        });
+
+    })*/
+ 
 </script>
 </body>
 </html>
