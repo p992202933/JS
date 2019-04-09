@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+}
+    #div1{
+        width: 200px;
+        height: 200px;
+        background: #00ff12;
+    }
+    ul{
+     overflow: hidden;
+    }
+    li{
+        width: 30px;
+        height: 60px;
+        float: left;
+        list-style: none;
+        text-align: center;
+        line-height: 60px;
+        margin-right: 30px ;
+    }
+    #div2 div{
+        width: 200px;
+        height: 140px;
+        background: red;
+        display: none;
+    }
+    #div1 .click{
+        background:red;
+    }
+    #div2 .selected{
+        display: block;
+    }
+</style>
+<body>
+<div id="div1">
+    <ul>
+        <li class="click">111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <div id="div2">
+        <div class="selected">111内容</div>
+        <div>222内容</div>
+        <div>333内容</div>
+    </div>
+</div>
+<script>
+   var aLi = document.getElementsByTagName('li');
+   var oDiv2 = document.getElementById('div2');
+   var aDiv = oDiv2.getElementsByTagName('div')
+   for (var i=0;i<aLi.length;i++){
+       aLi[i].index = i;
+       aLi[i].onclick = function () {
+           for (var j = 0;j<aLi.length;j++){
+               aLi[j].className = ''
+               aDiv[j].className = ''
+           }
+           this.className = 'click'
+           aDiv[this.index].className = 'selected'
+       }
+   }
+
+</script>
+</body>
+</html>
