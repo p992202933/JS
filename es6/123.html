@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #menu{
+            border: solid #000000 1px;
+            width: 90px;
+            display: none;
+            left: 0;
+            top: 0;
+            position: absolute;
+        }
+        #menu li{
+            height: 30px;
+            width: 90px;
+            line-height: 30px;
+            text-align: center;
+            border-bottom: 1px solid #000000;
+            cursor: pointer;
+            list-style: none;
+
+        }
+        #menu li:hover{
+            background: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<a href="history.html">点击</a>
+<input type="text" id="username">
+<ul id="menu">
+    <li>菜单1</li>
+    <li>菜单2</li>
+    <li>菜单3</li>
+
+</ul>
+<script>
+    var username = document.getElementById('username');
+    username.onfocus = function () {
+        console.log('huoqu');
+    }
+    username.onblur = function () {
+        console.log('shiqu')
+    }
+    var oMenu = document.getElementById('menu');
+    var aLi = document.getElementsByTagName('li');
+    document.oncontextmenu = function (e) {
+        e = e || window.event;
+        oMenu.style.display = 'block';
+        oMenu.style.left = e.clientX + 'px';
+        oMenu.style.top = e.clientY + 'px';
+        return false;
+    }
+    document.onclick = function () {
+        oMenu.style.display = 'none';
+    }
+    for (var i = 0;i<aLi.length;i++){
+        aLi[i].onclick = function () {
+            alert(this.innerHTML);
+        }
+    }
+</script>
+</body>
+</html>

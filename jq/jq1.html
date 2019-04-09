@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+
+    <h1>你有什么爱好</h1>
+<br/>
+<input type="checkbox" class ='items' value="足球">足球
+<input type="checkbox" class ='items' value="乒乓球">乒乓球
+<input type="checkbox" class ='items' value="篮球">篮球
+<input type="checkbox" class ='items' value="羽毛球">羽毛球
+<br/>
+<input type="button"  class="allpick" value="全选">
+<input type="button"  class="nopick" value="全不选">
+<input type="button"  class="fanpick" value="反选">
+<input type="button"  class="submit" value="提交">
+</form>
+
+
+</body>
+<script src="jquery-1.12.4.js"></script>
+<script>
+ $('.allpick').on('click',function () {
+     $(':checkbox').prop('checked',true)
+ })
+ $('.nopick').on('click',function () {
+     $(':checkbox').prop('checked',false)
+ })
+ $('.fanpick').on('click',function () {
+     // console.log( $(":checkbox").prop("checked"));
+    $(':checkbox').each(function (index,ele) {
+        ele.checked = !ele.checked;
+    })
+ })
+
+</script>
+</html>
