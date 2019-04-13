@@ -6,10 +6,58 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #tital{
+        text-align: center;
+        border-bottom: solid 5px gray;
+    }
+    #contain div{
+        height: 50px;
+        width: 200px;
+        background: gray;
+        line-height: 50px;
+        margin: 10px;
+        margin-left: 0;
+        
+    }
+</style>
 <body>
+<div id="app">
+    <h1 id="tital">todolist</h1>
+        <form action="">
+        <p> 名称：<input type="text" v-model = 'objName'> 价格<input type="number">
+        <button v-on:click="">增加</button>
+        </p>   
+        <p><input type="text">查询</p>
+        <p>
+            <ul id="contain">
+                <div >
+                <input type="checkbox" v-on:click="onClick">衣服
+                </div>
+            <div><input type="checkbox" >裤子</div>
+               <div ><input type="checkbox" >鞋子</div> 
+               <div > <input type="checkbox" >iPonex</div>
+                <div ><input type="checkbox" >电脑</div>
+        
+               </ul>
+        </p>
+        </form>
     
+</div>
     <script src='vue.js'></script>
     <script>
-    
+    new Vue({
+        el: '#app',
+        methods:{
+            onClick(){
+                
+            }
+        }
+        
+    })
     </script>
 </html>
