@@ -42,7 +42,7 @@ crossorigin="anonymous">
                         <td>删除</td>
                 </thead>
                 <tbody class='text-center'>
-                      <tr v-for="(item, index) in proList" :key="index" v-on:click="choose(item)" :class="{red: item.isRed}">
+                      <tr v-for="(item, index) in proList" :key="item.id" v-on:click="choose(item)" :class="{red: item.isRed}">
                         <td>
                             <input type="checkbox" v-model="item.isRed">
                         </td>
@@ -73,57 +73,112 @@ crossorigin="anonymous">
         proList:[{
             name: '衣服',
             price: 122,
-            isRed: false
+            isRed: false,
+            id: 1
         },
         {
             name: '裤子',
             price: 132,
-            isRed: false
+            isRed: false,
+            id: 2
         },
         {
             name: '鞋子',
             price: 123,
-            isRed: false
+            isRed: false,
+            id: 3
         },
         {
             name: '电脑',
             price: 12222,
-            isRed: false
+            isRed: false,
+            id: 4
         },
         {
             name: '手机',
             price: 1222,
-            isRed: false
+            isRed: false,
+            id: 5
         }],
         proName: "",
         proPrice: '',
-        showList: []
+        showList: [{
+            name: '衣服',
+            price: 122,
+            isRed: false,
+            id: 1
+        },
+        {
+            name: '裤子',
+            price: 132,
+            isRed: false,
+            id: 2
+        },
+        {
+            name: '鞋子',
+            price: 123,
+            isRed: false,
+            id: 3
+        },
+        {
+            name: '电脑',
+            price: 12222,
+            isRed: false,
+            id: 4
+        },
+        {
+            name: '手机',
+            price: 1222,
+            isRed: false,
+            id: 5
+        }
+
+        ],
+        searchName: ""
        },
        total : 0,
        methods: {
-           choose(item){
-            item.isRed = !item.isRed
+           choose(id){
+            this.showList.forEach(function(obj,index){
+                if(obj.id == id){
+                    obj.isRed = !obj.isRed;
+                }
+            })
            },
            add(){
             this.proList.push({
                 name : this.proName,
                 price : Number.parseInt(this.proPrice),
-                isRed: false
+                isRed: false,
+                id:Symbol()
             })
+            this.showList = [...this.proList]
            },
-           del(index){
-        this.proList.splice(index,1);
+           del(id){
+        let arr = this.proList.filter(function(obj,index){
+            return obj.id != id;
+        })
+        this.proList = [...arr];
+        this.showList = [...arr]
        },
        delChecked(){
             let showMe = this.proList.filter(function(obj,index){
-                return !obj.isRed
+                return obj.id != id
                 
             })
-            this.proList = showMe;
+            this.proList =[...showMe];
+            this.showList = [...showMe];
        },
        filProduct(){
-
-       }
+        let searchList = this.proList.filter(function(obj,index){
+            return obj.name.includes(this.searchName);
+        }
+        
+        )
+        
+                this.showList = [...this.searchList];
+                searchName = ""
+        }
        },
        computed: {
            total(){
