@@ -1,198 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <style>
+        .red {
+            background: red;
+        }
+    </style>
 </head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-crossorigin="anonymous">
-<style>
-.red{
-    background: red;
-}
-</style>
+
 <body>
     <div id="app">
         <h1 class="text-center">todolist</h1>
-        <form class="form-inline text-center" >
-            <div class="form-group ">
-              <label for="exampleInputName2">Name</label>
-              <input type="text" class="form-control" v-model="proName" id="exampleInputName2" placeholder="请输入商品名">
+        <form class="form-inline text-center">
+            <div class="form-group">
+                <input type="text" class="form-control" v-model="searchName" placeholder="请输入过滤商品名">
+            </div>
+            <button type="submit" class="btn btn-default" @click.prevent="filProduct()">过滤</button>
+        </form>
+
+        <form class="form-inline text-center">
+            <div class="form-group">
+                <label for="exampleInputName2">Name</label>
+                <input type="text" class="form-control" v-model="proName" id="exampleInputName2" placeholder="请输入商品名">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail2">Price</label>
-              <input type="number" class="form-control" v-model="proPrice" id="exampleInputEmail2" placeholder="请输入价格">
+                <label for="exampleInputEmail2">price</label>
+                <input type="number" class="form-control" v-model="proPrice" id="exampleInputEmail2" placeholder="请输入价格">
             </div>
-            <button type="submit" class="btn btn-default" v-on:click.prevent="add()">添加</button>
-          </form>
-          <form class="form-inline text-center">
-                <div class="form-group">
-                    <input type="text" class="form-control" v-model="searchName" placeholder="请输入过滤商品名">
-                </div>
-                <button type="submit" class="btn btn-default" @click.prevent="filProduct()">过滤</button>
-            </form>
-    
-          <table class="table table-bordered">
-                <thead class="text-center">
-                        <td>选择</td>
-                        <td>商品名</td>
-                        <td>商品价格</td>
-                        <td>删除</td>
-                </thead>
-                <tbody class='text-center'>
-                      <tr v-for="(item, index) in proList" :key="item.id" v-on:click="choose(item)" :class="{red: item.isRed}">
-                        <td>
-                            <input type="checkbox" v-model="item.isRed">
-                        </td>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.price }}</td>
-                        <td>
-                                <button type="button" v-on:click.stop="del(index)" class="btn btn-warning glyphicon glyphicon-remove btn-xs" ></button>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                          <td>
-                                <button type="button" class="btn btn-danger btn-xs" v-on:click="delChecked()">删除选中</button>
-                          </td>
-                          <td colspan="3" >
-                                总价是{{ total }}元
-                          </td>
-                      </tr>
-                </tbody>
+            <button type="submit" class="btn btn-default" @click.prevent="add()">添加</button>
+        </form>
+        <table class="table table-bordered text-center">
+            <thead>
+                <td>选择</td>
+                <td>商品名称</td>
+                <td>商品价格</td>
+                <td>删除</td>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in showList" :key="item.id" @click="change(item.id)" :class="{red:item.isRed}">
+                    <td>
+                        <input type="checkbox" v-model="item.isRed">
+                    </td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning glyphicon glyphicon-remove btn-xs" @click.stop="del(item.id)"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-xs" @click="delChecked()">删除选中</button>
+                    </td>
+                    <td colspan="3">总价是: {{total}} 元</td>
+                </tr>
+            </tbody>
+        </table>
 
-              </table>
+
     </div>
-    <script src="vue.js"></script>
-    <script>
-   new Vue({
-       el: '#app',
-       data: {
-        proList:[{
-            name: '衣服',
-            price: 122,
-            isRed: false,
-            id: 1
-        },
-        {
-            name: '裤子',
-            price: 132,
-            isRed: false,
-            id: 2
-        },
-        {
-            name: '鞋子',
-            price: 123,
-            isRed: false,
-            id: 3
-        },
-        {
-            name: '电脑',
-            price: 12222,
-            isRed: false,
-            id: 4
-        },
-        {
-            name: '手机',
-            price: 1222,
-            isRed: false,
-            id: 5
-        }],
-        proName: "",
-        proPrice: '',
-        showList: [{
-            name: '衣服',
-            price: 122,
-            isRed: false,
-            id: 1
-        },
-        {
-            name: '裤子',
-            price: 132,
-            isRed: false,
-            id: 2
-        },
-        {
-            name: '鞋子',
-            price: 123,
-            isRed: false,
-            id: 3
-        },
-        {
-            name: '电脑',
-            price: 12222,
-            isRed: false,
-            id: 4
-        },
-        {
-            name: '手机',
-            price: 1222,
-            isRed: false,
-            id: 5
-        }
 
-        ],
-        searchName: ""
-       },
-       total : 0,
-       methods: {
-           choose(id){
-            this.showList.forEach(function(obj,index){
-                if(obj.id == id){
-                    obj.isRed = !obj.isRed;
+
+    <script src="vue.js"></script>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                productList: [{
+                    name: '衣服',
+                    price: 123,
+                    isRed: false,
+                    id:1
+                }, {
+                    name: '裤子',
+                    price: 234,
+                    isRed: false,
+                    id:2
+                }, {
+                    name: '手机',
+                    price: 8888,
+                    isRed: false,
+                    id:3
+                }, {
+                    name: '鞋',
+                    price: 777,
+                    isRed: false,
+                    id:4
+                }],
+                // 用来显示的数组
+                showList:[{
+                    name: '衣服',
+                    price: 123,
+                    isRed: false,
+                    id:1
+                }, {
+                    name: '裤子',
+                    price: 234,
+                    isRed: false,
+                    id:2
+                }, {
+                    name: '手机',
+                    price: 8888,
+                    isRed: false,
+                    id:3
+                }, {
+                    name: '鞋',
+                    price: 777,
+                    isRed: false,
+                    id:4
+                }],
+                proName: '',
+                proPrice: 0,
+                searchName:''
+            },
+            methods: {
+                add(){
+                    this.productList.push({
+                        name:this.proName,
+                        price:this.proPrice,
+                        isRed:false,
+                        id:Symbol()
+                    });
+                    this.showList = [...this.productList];
+
+                },
+                change(id){
+                    // 只改变了 showList中传进来的item
+                    // item.isRed = !item.isRed;
+                    // 传进来的是 将要修改的obj的id   productList数组obj中id是id  元素的isRed = !isRed;
+                    // let changeList = this.productList.map(function(obj,index){
+                    //     if(obj.id == id){
+                    //         obj.isRed = !obj.isRed;
+                    //     }
+                    //     return obj;
+                    // });
+                    // this.productList = [...changeList];
+                    // this.showList =  [...changeList];
+
+                    this.showList.forEach(function(obj,index){
+                        if(obj.id == id){
+                            obj.isRed = !obj.isRed;
+                        }
+                    });
+
+                },
+                delChecked(){
+                    let arr = this.productList.filter(function(obj,index){
+                        return !obj.isRed;
+                    });
+
+                    this.productList = [...arr];
+                    this.showList = [...arr];
+                },
+                del(id){
+                    // 删除数组中obj的id 是 id
+                    let delList = this.productList.filter(function(obj,index){
+                        return obj.id != id;
+                    });
+                    this.productList = [...delList];
+                    this.showList = [...delList];
+
+                },
+                filProduct(){
+                    //从productList 中过滤出的商品  存在searchList中 obj(name = "衣服")
+                    // filter过滤出 新数组中存的对象  跟 原数组productList中存的对象  指向同一块堆内存
+                    let searchList = this.productList.filter((obj,index)=>{
+                        return obj.name.includes(this.searchName);
+                    });
+
+                    this.showList = [...searchList];
+                    
+                    this.searchName = "";
                 }
-            })
-           },
-           add(){
-            this.proList.push({
-                name : this.proName,
-                price : Number.parseInt(this.proPrice),
-                isRed: false,
-                id:Symbol()
-            })
-            this.showList = [...this.proList]
-           },
-           del(id){
-        let arr = this.proList.filter(function(obj,index){
-            return obj.id != id;
-        })
-        this.proList = [...arr];
-        this.showList = [...arr]
-       },
-       delChecked(){
-            let showMe = this.proList.filter(function(obj,index){
-                return obj.id != id
-                
-            })
-            this.proList =[...showMe];
-            this.showList = [...showMe];
-       },
-       filProduct(){
-        let searchList = this.proList.filter(function(obj,index){
-            return obj.name.includes(this.searchName);
-        }
-        
-        )
-        
-                this.showList = [...this.searchList];
-                searchName = ""
-        }
-       },
-       computed: {
-           total(){
-               let sum = 0;
-               this.proList.forEach(function(obj,index){
-                   if(obj.isRed){
-                    sum += obj.price;
-                   }
-               })
-               return sum;
-           }
-       },
-      
-   })
+            },
+            computed:{
+                total(){
+                    let sum = 0;
+                    this.showList.forEach(function(obj,index){
+                        if(obj.isRed){
+                            sum += obj.price
+                        }
+                    })
+                    return sum;
+                }
+            }
+               
+        });
     </script>
+
 </body>
+
 </html>
