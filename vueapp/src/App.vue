@@ -6,9 +6,11 @@
 <script>
 import CommonHeader from '@/components/CommonHeader.vue'
 export default {
-  
+    components:{
+      CommonHeader
+    }
 }
 </script>
-<style lang='scss' scoped>
+<style  scoped>
 
 </style>
