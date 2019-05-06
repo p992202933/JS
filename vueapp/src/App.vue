@@ -4,7 +4,7 @@
   <div>
     <router-view></router-view>
   </div>
-  <common-footer></common-footer>
+  <common-footer :menu='menu'></common-footer>
   </div>
 </template>
 <script>
@@ -17,28 +17,28 @@ export default {
     },
     data(){
       return{
-        menu:[{
-          name: '电影',
-          path: '/movie',
-          background: red
-        },{
-          name: '音乐',
-          path: '/music',
-          background: red
-        },{
-          name: '图书',
-          path: '/books',
-          background: red
-        },{
-          name: '图片',
-          path: '/picture',
-          background: red
-        },{
-          name: '讨论',
-          path: '/talk',
-          background: red
+        menu: [
+        {
+          name: "电影",
+          path: "/movie",
+          bg: "#f00"
         },
-        ]
+        {
+          name: "音乐",
+          path: "/music",
+          bg: "#00ffee"
+        },
+        {
+          name: "图书",
+          path: "/book",
+          bg: "#feef00"
+        },
+        {
+          name: "图片",
+          path: "/photo",
+          bg: "#fabbaa"
+        }
+      ],
       }
     }
 }

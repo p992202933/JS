@@ -1,8 +1,8 @@
 <template>
     <div class="footer">
-        <ul class="footer-list">
-       <li>
-           
+        <ul class="footer-list" v-for="(obj, index) in menu" :key="index">
+       <li v-for="(obj, index) in menu" :key="index">
+      <router-link :to="obj.path">{{ obj.name }}</router-link>
        </li>
         </ul>
     </div>
@@ -10,7 +10,7 @@
 <script>
     
 export default {
-    
+    props:['menu']
 }
 </script>
 <style  scoped>
@@ -22,11 +22,19 @@ export default {
        position:fixed;
        line-height: 1rem;
    }
-   .footer .footer-list{
+    .footer-list {
        display: flex;
    }
-   .footer.footer-list li{
+   .footer-list li{
        flex: 1;
        text-align: center;
+      
    }
+   .footer-list a{
+       color: black;
+       outline: none;
+   }
+   .footer-list a.router-link-active{
+        color:#fff;
+    }
 </style>
