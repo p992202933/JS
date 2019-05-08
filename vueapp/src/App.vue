@@ -1,23 +1,21 @@
 <template>
   <div id="app">
-  <common-header></common-header>
-  <div>
-    <router-view></router-view>
-  </div>
-  <common-footer :menu='menu'></common-footer>
+    <common-header :selectMenu="selectMenu"></common-header>
+    <div id="content">
+      <router-view></router-view>
+    </div>
+    <common-footer :menu="menu" :selectMenu="selectMenu" @change="fn"></common-footer>
   </div>
 </template>
+
 <script>
-import CommonHeader from '@/components/CommonHeader.vue'
-import CommonFooter from '@/components/CommonFooter.vue'
+import CommonHeader from "@/components/CommonHeader.vue";
+import CommonFooter from "@/components/CommonFooter.vue";
+
 export default {
-    components:{
-      CommonHeader,
-      CommonFooter
-    },
-    data(){
-      return{
-        menu: [
+  data() {
+    return {
+      menu: [
         {
           name: "电影",
           path: "/movie",
@@ -39,10 +37,36 @@ export default {
           bg: "#fabbaa"
         }
       ],
-      }
+      selectMenu:{
+          name: "电影",
+          path: "/movie",
+          bg: "#f00"
+        },
+    };
+  },
+  components: {
+    CommonHeader,
+    CommonFooter
+  },
+  methods: {
+    fn(index){
+      // console.log(index);
+      this.selectMenu = this.menu[index];
     }
-}
+  },
+  created() {
+      // console.log(this.$route.path);
+      this.menu.forEach((obj,index)=>{
+          if(obj.path == this.$route.path){
+             this.selectMenu = obj;
+          }
+      })
+  },
+};
 </script>
-<style  scoped>
 
+<style  scoped>
+#content {
+  margin: 1rem 0;
+}
 </style>
