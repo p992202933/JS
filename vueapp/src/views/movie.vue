@@ -20,6 +20,9 @@
                 </div>
             </li>
         </ul>
+        <div class="loading" v-show="isShow">
+            <img src="@/assets/imgs/loading.gif">
+        </div>
     </div>
 </template>
 
@@ -28,12 +31,15 @@
     export default {
         data() {
             return {
-                movieList:[]
+                movieList:[],
+                isShow: true
             }
         },
         created() {
-           axios.get('/data/movie0.json')
+           axios.get('https://bird.ioliu.cn/v1?url=https://api.douban.com/v2/movie/in_theaters?city=广州&start=0&count=10')
+           //axios.get('/data/movie0.json')
             .then((result) => {
+                
                 this.movieList = result.data.subjects;
                 console.log(this.movieList);
             }
@@ -58,5 +64,12 @@
  }
  .movie-text{
      flex: 1;
+ }
+ .loading{
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%,-50%);
+     position: fixed;
+     background: rgba(0,0,0,0.5);
  }
 </style>
