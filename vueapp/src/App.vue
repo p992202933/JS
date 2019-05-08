@@ -26,6 +26,7 @@ export default {
           path: "/music",
           bg: "#00ffee"
         },
+        
         {
           name: "图书",
           path: "/book",
