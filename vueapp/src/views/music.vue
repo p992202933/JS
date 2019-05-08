@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img :src="obj.bg" v-for="(obj, index) in musicList" :key="index" class="music-photo">
+        <img :src="obj.bg" v-for="(obj, index) in musicList" :key="index" class="music-photo" @click="goList()">
     </div>
 </template>
 
@@ -18,6 +18,11 @@ import axios from 'axios'
                 this.musicList = result.data.albums;
                 console.log(this.musicList)
             })
+        },
+        methods: {
+            goList(){
+                this.$router.push('/musiclist')
+            }
         },
     }
 </script>
