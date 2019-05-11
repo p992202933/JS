@@ -1,7 +1,7 @@
 <template>
     <div class="movie-container">
         <ul>
-            <li class="movie-list" v-for="(obj, index) in movieList" :key="index">
+            <li class="movie-list" v-for="(obj, index) in movieList" :key="index" >
                 <img class="movie-img" :src="obj.images.medium">
                 <div class="movie-text">
                     <h4>{{ obj.title }}</h4>
@@ -60,7 +60,8 @@
                 }
             })
 
-               }
+               },
+               
            },
     }
 </script>

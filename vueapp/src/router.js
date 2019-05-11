@@ -5,8 +5,7 @@ import Music from '@/views/music.vue'
 import Book from '@/views/book.vue'
 import Photo from '@/views/photo.vue'
 import MusicList from '@/views/musicList.vue'
-
-Vue.use(Router)
+import MovieDetail from '@/views/movieDetail.vue'
 
 export default new Router({
   mode: 'history',
@@ -15,6 +14,10 @@ export default new Router({
     {
       path:"/movie",
       component:Movie
+    },
+    {
+      path:"/movieDetail",
+      component:MovieDetail
     },
     {
       path:"/music",
