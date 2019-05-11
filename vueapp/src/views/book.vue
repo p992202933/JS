@@ -1,25 +1,25 @@
 <template>
     <div>
-        <swipe class="my-swipe">
+        <!-- <swipe class="my-swipe">
             <swipe-item class="slide1"></swipe-item>
             <swipe-item class="slide2"></swipe-item>
             <swipe-item class="slide3"></swipe-item>
-        </swipe>
+        </swipe> -->
     </div>
 </template>
 <script>
-    require('vue-swipe/dist/vue-swipe.css');
-    import { Swipe, SwipeItem } from 'vue-swipe';
-    export default {
-        components: {
-            Swipe,u8,
-            SwipeItem
-        }
-    }
+    // require('vue-swipe/dist/vue-swipe.css');
+    // import { Swipe, SwipeItem } from 'vue-swipe';
+    // export default {
+    //     components: {
+    //         Swipe,
+    //         SwipeItem
+    //     }
+    // }
 </script>
 
 <style scoped>
-.my-swipe {
+/* .my-swipe {
   height: 200px;
   color: #fff;
   font-size: 30px;
@@ -43,5 +43,5 @@
   background-color: #ff2d4b;
   color: #fff;
 
-}
+} */
 </style>
