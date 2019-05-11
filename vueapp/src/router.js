@@ -6,7 +6,7 @@ import Book from '@/views/book.vue'
 import Photo from '@/views/photo.vue'
 import MusicList from '@/views/musicList.vue'
 import MovieDetail from '@/views/movieDetail.vue'
-import PhotoDetail from '@/views/PhotoDetail.vue'
+import PhotoDetail from '@/views/photoDetail.vue'
 
 Vue.use(Router)
 
