@@ -42,7 +42,7 @@
                 let scrollTop = document.documentElement.scrollTop;
                 let height = document.documentElement.scrollHeight;
                 let clinetHeight = document.documentElement.clientHeight;
-                if( scrollTop+clinetHeight==height && !isBottom){
+                if( scrollTop+clinetHeight==height && !this.isBottom){
                     this.getMovie();
                 }
             }
@@ -55,7 +55,7 @@
                 this.isShow = false;
                 this.movieList = [...this.movieList,...result.data.subjects];
                 console.log(this.movieList);
-                if(this.movieList.length == result.data.subjects.total){
+                if(this.movieList.length == result.data.total){
                     this.isBottom = true;
                 }
             })

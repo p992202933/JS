@@ -1,6 +1,8 @@
 <template>
     <div>
         {{$route.params.id}}
+        {{movie.title}}
+        <img :src="movie.images.medium">
     </div>
 </template>
 <script>
@@ -14,6 +16,9 @@ export default {
 
     created() {
         axios.get('https://bird.ioliu.cn/v1?url=https://api.douban.com/v2/movie/subject'+this.$route.params.id)
+        .then((resule)=>{
+            this.movie = result.data;
+        })
     },
 }
  
