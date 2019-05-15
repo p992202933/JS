@@ -36,7 +36,7 @@ export default new Router({
       path:"/photo",
       component:Photo
     },{
-      path:"/photoDetail",
+      path:"/photoDetail/:index",
       component:PhotoDetail
     },
     {

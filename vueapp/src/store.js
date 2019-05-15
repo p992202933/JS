@@ -9,7 +9,7 @@ export default new Vuex.Store({
   },
   mutations: {
     addPhoto(state,data){
-      state.photoData = data
+      state.photoData = data;
     }
   },
   actions: {

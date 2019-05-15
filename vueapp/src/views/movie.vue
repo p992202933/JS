@@ -63,7 +63,7 @@
 
                },
                goDetail(id){
-                   this.$router.push('/movieDetail'+id)
+                   this.$router.push('/movieDetail/'+id)
                }
                
            },

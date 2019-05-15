@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img v-for="(obj, index) in photoData" :key="index" :src="obj.src" @click="goDetail(index)">
+        <img v-for="(obj, index) in $store.state.photoData" :key="index" :src="obj.src" @click="goDetail(index)">
     </div>
 </template>
 
@@ -20,7 +20,7 @@ import axios from 'axios';
        },
        methods: {
            goDetail(index){
-               this.$router.push('/photoDetail'+index)
+               this.$router.push('/photoDetail/'+index);
            }
        },
     }
