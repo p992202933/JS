@@ -10,26 +10,38 @@
     <div id="app">
 
     </div>
-
     <script src="react.development.js"></script>
     <script src="react-dom.development.js"></script>
     <script src="browser.min.js"></script>
 
     <script type="text/babel">
-
-    // ReactDOM.render(
-    //     <h1>hello world</h1>,
-    //     document.getElementById('app')
-    // );
+    class Happy extends React.Component{
+        constructor(params){
+            super(params);
+            this.state={
+                num: 0
+            }
+            this.add = this.add.bind(this);
+        }
+    
+    add(){
+        this.setState({
+            num: 2
+        })
+    }
+    render(){
+        return (
+            <div>
+                <h1>数字是：{this.state.num}</h1>
+                <button onClick={this.add}>add</button>
+            </div>
+        )
+    };
+}
     ReactDOM.render(
-        <div>
-            <h1>hahaha</h1>
-            <p>heiheihei</p>
-        </div>,
+        <Happy></Happy>,
         document.getElementById('app')
     )
-        
-    
     </script>
 </body>
 </html>
