@@ -17,7 +17,7 @@ import Commonfoot from '@/components/Commonfoot.vue'
 export default {
   data() {
     return {
-      meun:[{
+      menu:[{
         name: '电影',
         path: '/movie'
       },{
