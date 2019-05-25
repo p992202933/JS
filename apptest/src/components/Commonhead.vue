@@ -1,14 +1,14 @@
 <template>
-    <div class="header">
+    <div class="header" :style="{backgroune:selectMenu.bg}">
         <div>
         <span class="header-title">首页</span>
-        <span class="header-name">电影</span>
+        <span class="header-name" >{{selectMenu.name}}</span>
         </div>
     </div>
 </template>
 <script>
 export default {
-    
+    props:['selectMenu']
 }
 </script>
 <style scoped>
@@ -19,7 +19,7 @@ export default {
         position: fixed;
         line-height: 1rem;
         color: aliceblue;
-        top: 0;
+        top: 0px;
     }
     .header-name{
         left: 50%;
