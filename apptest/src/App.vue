@@ -17,23 +17,28 @@ import Commonfoot from '@/components/Commonfoot.vue'
 export default {
   data() {
     return {
-      menu:[{
-        name: '电影',
-        path: '/movie',
-        bg: '#f44'
-      },{
-        name: '音乐',
-        path: '/music',
-        bg: '#f33'
-      },{
-        name: '图书',
-        path: '/book',
-        bg: '#f55'
-      },{
-        name: '相片',
-        path: '/photo',
-        bg: '#f66'
-      },
+      menu: [
+        {
+          name: "电影",
+          path: "/movie",
+          bg: "#f00"
+        },
+        {
+          name: "音乐",
+          path: "/music",
+          bg: "#00ffee"
+        },
+        
+        {
+          name: "图书",
+          path: "/book",
+          bg: "#feef00"
+        },
+        {
+          name: "图片",
+          path: "/photo",
+          bg: "#fabbaa"
+        }
       ],
       selectMenu:{
         name:'电影',
@@ -55,7 +60,7 @@ export default {
   created() {
     this.menu.forEach((obj,index) => {
       if(obj.path == this.$route.path) {
-        this.selectMenu = menu.obj;
+        this.selectMenu = obj;
       }
     });
   },
