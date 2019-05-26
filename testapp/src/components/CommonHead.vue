@@ -1,6 +1,9 @@
 <template>
     <div>
-        dainying
+        <div>
+            <span>首页</span>
+            <span>电影</span>
+        </div>
     </div>
 </template>
 <script>

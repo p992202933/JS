@@ -1,4 +1,4 @@
-# apptest
+# testapp
 
 ## Project setup
 ```
